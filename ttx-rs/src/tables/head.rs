@@ -8,13 +8,19 @@ use crate::ttx::Ttx;
 use ttx_rs_macros::ttx_me_baby;
 
 struct TtxField {
-    xml_name: &'static str
+    xml_name: &'static str,
+    accessor: fn (&Head) -> String,
 }
 
+// Intent: provide enough information that ttx_me_baby can generate things like write_ttx
 #[ttx_me_baby]
 static BLEH: [TtxField; 2] = [
-    TtxField { xml_name: "tableVersion" },
-    TtxField { xml_name: "fontRevision" },
+    TtxField { 
+        xml_name: "tableVersion",
+        accessor: |h| h.version().to_string() },
+    TtxField { 
+        xml_name: "fontRevision",
+        accessor: |h| h.font_direction_hint().to_string() },
 ];
 
 impl Ttx for Head<'_> {
