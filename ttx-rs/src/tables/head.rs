@@ -5,6 +5,18 @@ use xml_builder::XMLElement;
 
 use crate::ttx::Ttx;
 
+use ttx_rs_macros::ttx_me_baby;
+
+struct TtxField {
+    xml_name: &'static str
+}
+
+#[ttx_me_baby]
+static BLEH: [TtxField; 2] = [
+    TtxField { xml_name: "tableVersion" },
+    TtxField { xml_name: "fontRevision" },
+];
+
 impl Ttx for Head<'_> {
     fn write_ttx(&self, mut into: &mut dyn std::io::Write) -> Result<(), crate::error::Error> {
         let mut root = XMLElement::new("head");
