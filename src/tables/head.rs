@@ -1,4 +1,4 @@
-//! The 'head' table
+//! The 'head' table.
 
 use read_fonts::tables::head::Head;
 use xml_builder::XMLElement;

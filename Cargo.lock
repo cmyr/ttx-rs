@@ -59,7 +59,7 @@ dependencies = [
 [[package]]
 name = "font-types"
 version = "0.1.0"
-source = "git+https://github.com/cmyr/fontations?rev=dcac61b#dcac61b22768da549b7f27451a2e5491a8d387f7"
+source = "git+https://github.com/cmyr/fontations?rev=bc3bc07#bc3bc078728a465f34ceea9f4faadad5791cbfb7"
 
 [[package]]
 name = "heck"
@@ -139,7 +139,7 @@ dependencies = [
 [[package]]
 name = "read-fonts"
 version = "0.0.0"
-source = "git+https://github.com/cmyr/fontations?rev=dcac61b#dcac61b22768da549b7f27451a2e5491a8d387f7"
+source = "git+https://github.com/cmyr/fontations?rev=bc3bc07#bc3bc078728a465f34ceea9f4faadad5791cbfb7"
 dependencies = [
  "bitflags",
  "font-types",
