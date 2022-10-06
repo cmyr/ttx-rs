@@ -5,8 +5,15 @@ use xml_builder::XMLElement;
 
 use crate::ttx::Ttx;
 
+use ttx_rs_macros::ttx_xml;
+
 impl Ttx for Head<'_> {
     fn write_ttx(&self, mut into: &mut dyn std::io::Write) -> Result<(), crate::error::Error> {
+        ttx_xml!(
+            "head",
+            ("tableVersion", |h| h.version().to_string()),
+        );
+
         let mut root = XMLElement::new("head");
         root.add_child(value_elem("tableVersion", self.version()))
             .unwrap();
