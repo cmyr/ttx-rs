@@ -27,6 +27,7 @@ fn write_table_ttx(font: &FontRef, tag: Tag, args: &Args) -> Result<(), Error> {
     let mut target = args.target(tag)?;
     match tag {
         read_fonts::tables::head::TAG => font.head()?.write_ttx(&mut target),
+        read_fonts::tables::maxp::TAG => font.maxp()?.write_ttx(&mut target),
         other => {
             eprintln!("ttx is not yet implemented for table {other}");
             Ok(())
