@@ -6,6 +6,7 @@ mod args;
 mod error;
 mod tables;
 mod ttx;
+mod util;
 
 use clap::Parser;
 use read_fonts::{FontData, FontRef};
