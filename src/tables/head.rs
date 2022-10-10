@@ -4,6 +4,7 @@ use read_fonts::tables::head::Head;
 use xml_builder::XMLElement;
 
 use crate::ttx::Ttx;
+use crate::util::value_elem;
 
 impl Ttx for Head<'_> {
     fn write_ttx(&self, mut into: &mut dyn std::io::Write) -> Result<(), crate::error::Error> {
@@ -48,10 +49,4 @@ impl Ttx for Head<'_> {
         root.render(&mut into, false, true).unwrap();
         Ok(())
     }
-}
-
-fn value_elem(name: &str, value: impl std::fmt::Display) -> XMLElement {
-    let mut elem = XMLElement::new(name);
-    elem.add_attribute("value", value.to_string().as_str());
-    elem
 }
