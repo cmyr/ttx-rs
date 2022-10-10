@@ -4,10 +4,13 @@ use read_fonts::tables::maxp::Maxp;
 use xml_builder::XMLElement;
 
 use crate::ttx::Ttx;
+use crate::util::value_elem;
 
 impl Ttx for Maxp<'_> {
     fn write_ttx(&self, mut into: &mut dyn std::io::Write) -> Result<(), crate::error::Error> {
         let mut root = XMLElement::new("maxp");
+        root.add_child(value_elem("tableVersion", self.version()))
+            .unwrap();
         add_u16_child(&mut root, "numGlyphs", self.num_glyphs());
         add_u16_child(&mut root, "maxPoints", self.max_points());
         add_u16_child(&mut root, "maxContours", self.max_contours());
@@ -40,8 +43,6 @@ impl Ttx for Maxp<'_> {
 
 fn add_u16_child(root: &mut XMLElement, name: &str, value: impl Into<Option<u16>>) -> Option<u16> {
     let value: u16 = value.into()?;
-    let mut elem = XMLElement::new(name);
-    elem.add_attribute("value", value.to_string().as_str());
-    root.add_child(elem).unwrap();
+    root.add_child(value_elem(name, value)).unwrap();
     Some(value)
 }
